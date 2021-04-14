@@ -1,10 +1,11 @@
 import sys
-from libs.equation_model.equation_model import EquationModel
-from libs.parse.parse import parse
-from libs.make_output_strings.utils import create_reduced_form
-from libs.solve_equation.solve_degree_2 import solve_degree_2
-from libs.solve_equation.solve_degree_1 import solve_degree_1
+
 from libs import templates
+from libs.equation_model.equation_model import EquationModel
+from libs.make_output_strings.utils import create_reduced_form
+from libs.parse.parse import parse
+from libs.solve_equation.solve_degree_1 import solve_degree_1
+from libs.solve_equation.solve_degree_2 import solve_degree_2
 
 
 def get_args(equation_model: EquationModel):
@@ -35,7 +36,8 @@ def main():
                     print(templates.D_POSITIVE.format(x1=equation_model.x1, x2=equation_model.x2))
         elif equation_model.degree == 1:
             solve_degree_1(equation_model)
-            print(templates.DEGREE_1_SOLUTION.format(x1=equation_model.x1))
+            if not equation_model.steps:
+                print(templates.DEGREE_1_SOLUTION.format(x1=equation_model.x1))
     else:
         print(templates.USAGE)
         return 1

@@ -1,5 +1,6 @@
-from libs.equation_model.equation_model import EquationModel
 import re
+
+from libs.equation_model.equation_model import EquationModel
 
 
 def parse_polynomia_part(eq: str, degree: int):
@@ -11,15 +12,18 @@ def parse_nums(polynomial_part: list):
     sign = 1
     for part in polynomial_part:
         num_part = part.split('*')[0]
-        sign_str = re.search(r'[+]?[-]?', num_part).group(0)
-        if sign_str == '-':
-            sign = -1
-        elif sign_str == '+' or sign_str == '':
-            sign = 1
-        n = re.search(r'\d+[.]?\d+', num_part)
-        if n is None:
-            n = re.search(r'\d+', num_part)
-        num += sign * float(n.group(0))
+        if 'X' in num_part:
+            num += 1
+        else:
+            sign_str = re.search(r'[+]?[-]?', num_part).group(0)
+            if sign_str == '-':
+                sign = -1
+            elif sign_str == '+' or sign_str == '':
+                sign = 1
+            n = re.search(r'\d+[.]?\d+', num_part)
+            if n is None:
+                n = re.search(r'\d+', num_part)
+            num += sign * float(n.group(0))
     return num
 
 

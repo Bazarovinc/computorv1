@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 import sys
 
 from libs import templates
 from libs.equation_model.equation_model import EquationModel
-from libs.make_output_strings.utils import create_reduced_form
+from libs.output.make_output_strings import create_reduced_form
 from libs.parse.parse import parse
 from libs.solve_equation.solve_degree_1 import solve_degree_1
 from libs.solve_equation.solve_degree_2 import solve_degree_2
@@ -21,8 +22,13 @@ def get_args(equation_model: EquationModel):
 def main():
     equation_model = EquationModel()
     if equation := get_args(equation_model):
-        equation_model = parse(equation, equation_model)
+        if not parse(equation, equation_model):
+            print(templates.TRASH_ERROR)
+            return 1
         equation_model.make_degree()
+        if int(equation_model.b) == 0 and int(equation_model.a) == 0:
+            print("There is no solution!")
+            return 0
         print(templates.REDUCED_FORM.format(reduced_form=create_reduced_form(equation_model)))
         print(templates.POLYNOMIAL_DEGREE.format(degree=equation_model.degree))
         if equation_model.degree == 2:
@@ -38,9 +44,11 @@ def main():
             solve_degree_1(equation_model)
             if not equation_model.steps:
                 print(templates.DEGREE_1_SOLUTION.format(x1=equation_model.x1))
+        elif equation_model.degree > 2:
+            print(templates.BIGGER_POLYNOMIAL_DEGREE_ERROR)
     else:
         print(templates.USAGE)
-        return 1
+        return 0
     return 0
 
 

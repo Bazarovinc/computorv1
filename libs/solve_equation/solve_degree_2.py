@@ -1,38 +1,6 @@
-from libs import templates
 from libs.equation_model.equation_model import EquationModel
 from libs.math.ft_sqrt import ft_abs, ft_sqrt
-
-
-def show_steps(model: EquationModel):
-    print(templates.STEPS_DEGREE_2_BEFORE_D.format(a=model.a,
-                                                   b=model.b,
-                                                   c=model.c,
-                                                   b2=(model.b * model.b),
-                                                   ac=(4 * model.a * model.c),
-                                                   d=model.d))
-    if model.d > 0:
-        print(templates.STEPS_D_POSITIVE.format(a=model.a,
-                                                b=model.b,
-                                                sqrt_d=round(model.sqrt_d, 4),
-                                                x1=model.x1,
-                                                x2=model.x2,
-                                                b_sqrt_d_1=round(-model.b - model.sqrt_d, 4),
-                                                b_sqrt_d_2=round(-model.b + model.sqrt_d, 4),
-                                                a2=round(2 * model.a, 4)))
-    elif model.d < 0:
-        print(templates.STEPS_D_NEGATIVE.format(a=model.a,
-                                                b=model.b,
-                                                sqrt_d=round(model.sqrt_d, 4),
-                                                x1=model.x1_s,
-                                                x2=model.x2_s,
-                                                b_sqrt_d_1=round(-model.b - model.sqrt_d, 4),
-                                                b_sqrt_d_2=round(-model.b + model.sqrt_d, 4),
-                                                a2=round(2 * model.a, 4)))
-    elif model.d == 0:
-        print(templates.STEPS_D_EQ_0.format(a=model.a,
-                                            b=model.b,
-                                            x1=model.x1,
-                                            a2=round(2 * model.a, 4)))
+from libs.output.write_output import write_steps_degree_2
 
 
 def solve_degree_2(model: EquationModel):
@@ -48,4 +16,4 @@ def solve_degree_2(model: EquationModel):
         model.x1_s = f'{round((-model.b / (2 * model.a)), 4)} - i{round(model.sqrt_d / (2 * model.a), 4)}'
         model.x2_s = f'{round((-model.b / (2 * model.a)), 4)} + i{round(model.sqrt_d / (2 * model.a), 4)}'
     if model.steps:
-        show_steps(model)
+        write_steps_degree_2(model)

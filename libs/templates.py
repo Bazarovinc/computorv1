@@ -7,9 +7,9 @@ D_EQUAL_0 = "Discriminant is equal to 0, the solution is:\n{x1}"
 D_NEGATIVE = "Discriminant is negative, the two solutions are:\n{x1}\n{x2}"
 DEGREE_1_SOLUTION = "The solution is:\n{x1}"
 USAGE = 'usage:\n' \
-        './computor [-s] [equation]\n' \
-        '-s - the solutions will shown by steps\n' \
-        'equation - correct form should be: c * X^0 + b * X^1 + a * X^2 = 0, where a, b, c - is float'
+        '\t./computor [-s] [equation]\n' \
+        '\t\t-s - the solutions will shown by steps\n' \
+        '\t\tequation - correct form should be: c * X^0 + b * X^1 + a * X^2 = 0, where a, b, c - is float'
 STEPS_DEGREE_2_BEFORE_D = \
     "Solution stet by step:\n\tWe got:\n\t\t" + colored("a = {a}\n\t\t", 'red') + colored("b = {b}\n\t\t", 'blue') + \
     colored("c = {c}\n\t\t", 'yellow') + colored("D", 'cyan') + " = " + colored("b", 'blue') + "^2 - 4 * " +\
@@ -43,4 +43,6 @@ STEPS_D_EQ_0 = \
 STEPS_DEGREE_1 = \
     "Solution stet by step:\n\tWe got:\n\t\t" + colored("c = {c}\n\t\t", 'red') + colored("b = {b}\n\t\t", 'blue') + \
     "Solution is:\n\t\t" + colored("x", 'green') + " = -" + colored("c", 'red') + " / " + colored("b", 'blue') + \
-    " = -" + colored("{c}", 'red') + " / " + colored("{b}", 'blue') + " = " + colored("{x1}", 'green')
+    " = -(" + colored("{c}", 'red') + ") / " + colored("{b}", 'blue') + " = " + colored("{x1}", 'green')
+TRASH_ERROR = colored("Error!", 'red') + "\nSome trash in equation!"
+BIGGER_POLYNOMIAL_DEGREE_ERROR = "The polynomial degree is strictly greater than 2, I can't solve."

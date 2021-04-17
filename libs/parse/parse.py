@@ -12,6 +12,8 @@ def parse_nums(polynomial_part: list, eq_string: str) -> Tuple[float, str]:
     num: float = 0
     sign = 1
     for part in polynomial_part:
+        if not part:
+            continue
         eq_string = eq_string.replace(part, '')
         if '*' in part:
             num_part = part.split('*')[0]
@@ -44,10 +46,13 @@ def parse_equation(eq: str, model: EquationModel, side: int) -> str:
 
 def parse_free_form_equation(eq: str, model: EquationModel, side: int) -> str:
     a, eq = parse_nums(parse_polynomial_part(eq, 2), eq)
+    eq = eq.strip()
     model.a += side * a
     b, eq = parse_nums(re.findall(r'[+]?[-]?\s?\d*[.]?\d*\s?[*]?\s?[X]', eq), eq)
+    eq = eq.strip()
     model.b += side * b
     c, eq = parse_nums(re.findall(r'[+]?[-]?\s?\d*[.]?\d*', eq), eq)
+    eq = eq.strip()
     model.c += side * c
     return eq
 

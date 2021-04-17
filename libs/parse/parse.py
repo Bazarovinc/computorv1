@@ -96,7 +96,11 @@ def find_max_degree(eq, model):
 
 def parse(equation: str, model: EquationModel):
     find_max_degree(equation, model)
-    eq_1, eq_2 = equation.split(' = ')
+    try:
+        eq_1, eq_2 = equation.split('=')
+    except ValueError:
+        return False
+    eq_1, eq_2 = eq_1.strip(), eq_2.strip()
     if eq_2 == '0':
         eq_2 = ''
     if model.degree > 2:

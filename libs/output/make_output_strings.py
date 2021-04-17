@@ -1,4 +1,5 @@
 from libs.equation_model.equation_model import EquationModel
+from termcolor import colored
 
 
 def create_reduced_form(model: EquationModel) -> str:
@@ -25,3 +26,32 @@ def create_reduced_form(model: EquationModel) -> str:
                     reduced_form += f'+ {polynomial_part.coefficient} * X^{polynomial_part.degree} '
     reduced_form += '= 0'
     return reduced_form
+
+
+def create_colored_equation(model: EquationModel):
+    colored_eq = '\t\t'
+    if model.degree == 2:
+        colored_eq += colored('a', 'red') + '*X^2 + ' + colored('b', 'blue') + '*X + ' + colored('c', 'yellow') + \
+                      ' = 0\n\t\t'
+        colored_eq += colored(f'{model.a}', 'red') + '*X^2 '
+        if model.b < 0:
+            colored_eq += '- ' + colored(f'{-1 * model.b}', 'blue') + '*X '
+        elif model.b >= 0:
+            colored_eq += '+ ' + colored(f'{model.b}', 'blue') + '*X '
+        if model.c < 0:
+            colored_eq += '- ' + colored(f'{-1 * model.c}', 'yellow')
+        elif model.c >= 0:
+            colored_eq += '+ ' + colored(f'{model.c}', 'yellow')
+        colored_eq += ' = 0'
+    elif model.degree == 1:
+        colored_eq += colored('b', 'blue') + '*X + ' + colored('c', 'red') + ' = 0\n\t\t'
+        if model.b < 0:
+            colored_eq += colored(f'-{-1 * model.b}', 'blue') + '*X '
+        elif model.b >= 0:
+            colored_eq += colored(f'{model.b}', 'blue') + '*X '
+        if model.c < 0:
+            colored_eq += '- ' + colored(f'{-1 * model.c}', 'red')
+        elif model.c >= 0:
+            colored_eq += '+ ' + colored(f'{model.c}', 'red')
+        colored_eq += ' = 0'
+    return colored_eq

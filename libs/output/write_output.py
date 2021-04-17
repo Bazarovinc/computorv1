@@ -1,20 +1,28 @@
 from libs import templates
 from libs.equation_model.equation_model import EquationModel
+from libs.output.make_output_strings import create_colored_equation
 
 
 def write_steps_degree_1(model: EquationModel):
-    print(templates.STEPS_DEGREE_1.format(c=round(model.c, 4),
-                                          b=round(model.b, 4),
-                                          x1=round(model.x1, 4)))
+    print(templates.STEPS_DEGREE_1_GOT.format(c=round(model.c, 4),
+                                              b=round(model.b, 4)))
+    print(create_colored_equation(model))
+    print(templates.STEPS_SOLUTION_DEGREE_1.format(c=round(model.c, 4),
+                                                   b=round(model.b, 4),
+                                                   x1=round(model.x1, 4)))
 
 
 def write_steps_degree_2(model: EquationModel):
-    print(templates.STEPS_DEGREE_2_BEFORE_D.format(a=model.a,
-                                                   b=model.b,
-                                                   c=model.c,
-                                                   b2=(model.b * model.b),
-                                                   ac=(4 * model.a * model.c),
-                                                   d=model.d))
+    print(templates.STEPS_DEGREE_2_GOT.format(a=model.a,
+                                              b=model.b,
+                                              c=model.c))
+    print(create_colored_equation(model))
+    print(templates.STEPS_D.format(a=model.a,
+                                   b=model.b,
+                                   c=model.c,
+                                   b2=(model.b * model.b),
+                                   ac=(4 * model.a * model.c),
+                                   d=model.d))
     if model.d > 0:
         print(templates.STEPS_D_POSITIVE.format(a=model.a,
                                                 b=model.b,

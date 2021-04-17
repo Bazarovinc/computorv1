@@ -13,7 +13,7 @@ def solve_degree_2(model: EquationModel):
         model.x2 = round((-model.b + model.sqrt_d) / (2 * model.a), 4)
     elif model.d < 0:
         model.sqrt_d = ft_sqrt(ft_abs(model.d))
-        model.x1_s = f'{round((-model.b / (2 * model.a)), 4)} - i{round(model.sqrt_d / (2 * model.a), 4)}'
-        model.x2_s = f'{round((-model.b / (2 * model.a)), 4)} + i{round(model.sqrt_d / (2 * model.a), 4)}'
+        model.x1_s = f'{round((-model.b / (2 * model.a)), 4)} - {round(model.sqrt_d / (2 * model.a), 4)}i'
+        model.x2_s = f'{round((-model.b / (2 * model.a)), 4)} + {round(model.sqrt_d / (2 * model.a), 4)}i'
     if model.steps:
         write_steps_degree_2(model)

@@ -3,7 +3,6 @@ from libs.equation_model.equation_model import EquationModel
 
 def create_reduced_form(model: EquationModel) -> str:
     reduced_form = ''
-
     if model.c < 0:
         reduced_form += f'- {-1 * model.c} * X^0 '
     elif model.c >= 0:
@@ -18,7 +17,7 @@ def create_reduced_form(model: EquationModel) -> str:
         elif model.a >= 0:
             reduced_form += f'+ {model.a} * X^2 '
     if model.degree > 2:
-        for polynomial_part in reversed(model.other_degrees):
+        for polynomial_part in model.other_degrees:
             if polynomial_part.degree <= model.degree:
                 if polynomial_part.coefficient < 0:
                     reduced_form += f'- {-1 * polynomial_part.coefficient} * X^{polynomial_part.degree} '

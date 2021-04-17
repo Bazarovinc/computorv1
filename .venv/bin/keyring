@@ -1,4 +1,4 @@
-#!/Users/ctelma/Desktop/computorv1/.venv/bin/python3
+#!/home/ctelma/Desktop/computorv1/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

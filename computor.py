@@ -12,9 +12,12 @@ from libs.solve_equation.solve_degree_2 import solve_degree_2
 def get_args(equation_model: EquationModel):
     equation = None
     for arg in sys.argv:
-        if '-' in arg and 's' in arg:
-            equation_model.steps = True
-        elif '=' in arg:
+        if '-' in arg and arg[1:].isalpha():
+            if 's' in arg:
+                equation_model.steps = True
+            if 'f' in arg:
+                equation_model.free_form = True
+        if '=' in arg:
             equation = arg
     return equation
 
@@ -25,7 +28,6 @@ def main():
         if not parse(equation, equation_model):
             print(templates.TRASH_ERROR)
             return 1
-        equation_model.make_degree()
         if int(equation_model.b) == 0 and int(equation_model.a) == 0:
             print("There is no solution!")
             return 0

@@ -7,4 +7,6 @@ __pycache__
 libs/output/__pycache__
 libs/equation_model/__pycache__
 libs/solve_equation/__pycache__
+libs/__pycache__
+*/__pycache__
 __pycache__

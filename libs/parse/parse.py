@@ -108,7 +108,7 @@ def parse(equation: str, model: EquationModel):
         eq_1, eq_2 = eq_1.strip(), eq_2.strip()
     if model.free_form:
         eq_1 = parse_free_form_equation(eq_1, model, 1).strip()
-        eq_2 = parse_free_form_equation(eq_2, model, 1).strip()
+        eq_2 = parse_free_form_equation(eq_2, model, -1).strip()
     else:
         eq_1 = parse_equation(eq_1, model, 1).strip()
         eq_2 = parse_equation(eq_2, model, -1).strip()

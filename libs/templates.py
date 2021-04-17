@@ -9,6 +9,7 @@ DEGREE_1_SOLUTION = "The solution is:\n{x1}"
 USAGE = 'usage:\n' \
         '\t./computor [-s] [equation]\n' \
         '\t\t-s - the solutions will shown by steps\n' \
+        '\t\t-f - free form entrie\n' \
         '\t\tequation - correct form should be: c * X^0 + b * X^1 + a * X^2 = 0, where a, b, c - is float'
 STEPS_DEGREE_2_GOT = \
     "Solution stet by step:\n\tWe got:\n\t\t" + colored("a = {a}\n\t\t", 'red') + colored("b = {b}\n\t\t", 'blue') + \
@@ -44,7 +45,7 @@ STEPS_D_EQ_0 = \
 STEPS_DEGREE_1_GOT = \
     "Solution stet by step:\n\tWe got:\n\t\t" + colored("c = {c}\n\t\t", 'red') + colored("b = {b}", 'blue')
 STEPS_SOLUTION_DEGREE_1 = \
-    "\t\tSolution is:\n\t\t" + colored("x", 'green') + " = -" + colored("c", 'red') + " / " + colored("b", 'blue') + \
+    "\tSolution is:\n\t\t" + colored("x", 'green') + " = -" + colored("c", 'red') + " / " + colored("b", 'blue') + \
     " = -(" + colored("{c}", 'red') + ") / " + colored("{b}", 'blue') + " = " + colored("{x1}", 'green')
 TRASH_ERROR = colored("Error!", 'red') + "\nSome trash in equation!"
 BIGGER_POLYNOMIAL_DEGREE_ERROR = "The polynomial degree is strictly greater than 2, I can't solve."

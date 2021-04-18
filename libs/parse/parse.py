@@ -57,9 +57,9 @@ def parse_free_form_equation(eq: str, model: EquationModel, side: int) -> str:
     return eq
 
 
-def parse_other_degrees(eq: str, side: int) -> Tuple[str, Optional[List[OtherDegrees]]]:
+def parse_other_degrees(eq: str, side: int, degree) -> Tuple[str, Optional[List[OtherDegrees]]]:
     other_degrees = []
-    for i in reversed(range(3, 5)):
+    for i in reversed(range(3, degree + 1)):
         coef, eq = parse_nums(parse_polynomial_part(eq, i), eq)
         if int(coef) != 0:
             other_degrees.append(OtherDegrees(coefficient=side * coef, degree=i))
@@ -78,14 +78,14 @@ def check_zeros_coefficients(model: EquationModel) -> None:
 
 def check_others_degrees(eq_1: str, eq_2: str, model: EquationModel) -> Tuple[str, str]:
     if 'X' in eq_1:
-        eq_1, model.other_degrees = parse_other_degrees(eq_1, 1)
+        eq_1, model.other_degrees = parse_other_degrees(eq_1, 1, model.degree)
     if 'X' in eq_2:
         if model.other_degrees is None:
-            eq_2, model.other_degrees = parse_other_degrees(eq_2, -1)
+            eq_2, model.other_degrees = parse_other_degrees(eq_2, -1, model.degree)
         else:
             j = 0
-            for i in range(3, model.degree):
-                coef, eq_1 = parse_nums(parse_polynomial_part(eq_2, i), eq_2)
+            for i in range(3, model.degree + 1):
+                coef, eq_2 = parse_nums(parse_polynomial_part(eq_2, i), eq_2)
                 if int(coef) != 0:
                     model.other_degrees[j].coefficient -= coef
                 j += 1

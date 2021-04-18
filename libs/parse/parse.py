@@ -1,5 +1,5 @@
 import re
-from typing import Tuple, Optional, List
+from typing import List, Optional, Tuple
 
 from libs.equation_model.equation_model import EquationModel, OtherDegrees
 
@@ -68,6 +68,14 @@ def parse_other_degrees(eq: str, side: int) -> Tuple[str, Optional[List[OtherDeg
     return eq, other_degrees
 
 
+def check_zeros_coefficients(model: EquationModel) -> None:
+    for degree in model.other_degrees:
+        if int(degree.coefficient) == 0:
+            model.other_degrees.remove(degree)
+    if len(model.other_degrees) == 0:
+        model.other_degrees = None
+
+
 def check_others_degrees(eq_1: str, eq_2: str, model: EquationModel) -> Tuple[str, str]:
     if 'X' in eq_1:
         eq_1, model.other_degrees = parse_other_degrees(eq_1, 1)
@@ -81,10 +89,12 @@ def check_others_degrees(eq_1: str, eq_2: str, model: EquationModel) -> Tuple[st
                 if int(coef) != 0:
                     model.other_degrees[j].coefficient -= coef
                 j += 1
+    if model.other_degrees is not None:
+        check_zeros_coefficients(model)
     return eq_1, eq_2
 
 
-def find_max_degree(eq, model):
+def find_max_degree(eq: str, model: EquationModel) -> None:
     degrees = re.findall(r'[X][^\\]?\d*', eq)
     for degree in degrees:
         degree_num = re.search(r'\d+', degree)
@@ -94,7 +104,7 @@ def find_max_degree(eq, model):
             model.degree = int(degree_num.group(0))
 
 
-def parse(equation: str, model: EquationModel):
+def parse(equation: str, model: EquationModel) -> bool:
     find_max_degree(equation, model)
     try:
         eq_1, eq_2 = equation.split('=')

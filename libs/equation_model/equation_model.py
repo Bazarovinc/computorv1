@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from pydantic.typing import List, Optional, Tuple
+from pydantic.typing import List, Optional
 
 
 class OtherDegrees(BaseModel):

@@ -1,8 +1,8 @@
-def ft_abs(x):
+def ft_abs(x: float) -> float:
     return -x if x < 0 else x
 
 
-def ft_sqrt(n):
+def ft_sqrt(n: float) -> float:
     x = 1
     while True:
         nx = (x + n / x) / 2

@@ -1,5 +1,6 @@
-from libs.equation_model.equation_model import EquationModel
 from termcolor import colored
+
+from libs.equation_model.equation_model import EquationModel
 
 
 def create_reduced_form(model: EquationModel) -> str:
@@ -28,7 +29,7 @@ def create_reduced_form(model: EquationModel) -> str:
     return reduced_form
 
 
-def create_colored_equation(model: EquationModel):
+def create_colored_equation(model: EquationModel) -> str:
     colored_eq = '\t\t'
     if model.degree == 2:
         colored_eq += colored('a', 'red') + '*X^2 + ' + colored('b', 'blue') + '*X + ' + colored('c', 'yellow') + \

@@ -9,7 +9,7 @@ from libs.solve_equation.solve_degree_1 import solve_degree_1
 from libs.solve_equation.solve_degree_2 import solve_degree_2
 
 
-def get_args(equation_model: EquationModel):
+def get_args(equation_model: EquationModel) -> str:
     equation = None
     for arg in sys.argv:
         if '-' in arg and arg[1:].isalpha():
@@ -28,7 +28,10 @@ def main():
         if not parse(equation, equation_model):
             print(templates.TRASH_ERROR)
             return 1
-        if int(equation_model.b) == 0 and int(equation_model.a) == 0:
+        if int(equation_model.b) == 0 and int(equation_model.a) == 0 and int(equation_model.c) == 0:
+            print("The solution is any real number!")
+            return 0
+        elif int(equation_model.b) == 0 and int(equation_model.a) == 0 and int(equation_model.c) != 0:
             print("There is no solution!")
             return 0
         print(templates.REDUCED_FORM.format(reduced_form=create_reduced_form(equation_model)))
@@ -38,8 +41,8 @@ def main():
             if not equation_model.steps:
                 if equation_model.x2 is None and equation_model.d == 0:
                     print(templates.D_EQUAL_0.format(x1=equation_model.x1))
-                elif equation_model.x1 and equation_model.x2 is None and equation_model.d < 0:
-                    print(templates.D_NEGATIVE.format(x1=equation_model.x1, x2=equation_model.x2))
+                elif equation_model.d < 0:
+                    print(templates.D_NEGATIVE.format(x1=equation_model.x1_s, x2=equation_model.x2_s))
                 else:
                     print(templates.D_POSITIVE.format(x1=equation_model.x1, x2=equation_model.x2))
         elif equation_model.degree == 1:

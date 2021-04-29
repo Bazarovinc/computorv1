@@ -33,6 +33,7 @@ Discriminant is strictly positive, the two solutions are:
 ```
 ### Flags
 * -s
+
 The program will show you solving equation stat by step:
 ```
 >./computor.py -s "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
@@ -52,6 +53,7 @@ Solution stet by step:
 		x2 = ( -b + √D) / (2 * a) = (-(4.0) + 12.8374) / (2 * -9.3) = 8.8374 / -18.6 = -0.4751
 ```
 * -f
+
 You can put equation in free form, like:  "5 + 4 * X + X^2= X^2"
 ```
 >./computor.py -f "5 + 4 * X + X^2= X^2"

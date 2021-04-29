@@ -7,7 +7,7 @@ D_EQUAL_0 = "Discriminant is equal to 0, the solution is:\n{x1}"
 D_NEGATIVE = "Discriminant is negative, the two solutions are:\n{x1}\n{x2}"
 DEGREE_1_SOLUTION = "The solution is:\n{x1}"
 USAGE = 'usage:\n' \
-        '\t./computor [-s] [equation]\n' \
+        '\t./computor.py [-s] [equation]\n' \
         '\t\t-s - the solutions will shown by steps\n' \
         '\t\t-f - free form entrie\n' \
         '\t\tequation - correct form should be: c * X^0 + b * X^1 + a * X^2 = 0, where a, b, c - is float'

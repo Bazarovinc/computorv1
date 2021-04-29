@@ -32,8 +32,8 @@ def create_reduced_form(model: EquationModel) -> str:
 def create_colored_equation(model: EquationModel) -> str:
     colored_eq = '\t\t'
     if model.degree == 2:
-        colored_eq += colored('a', 'red') + '*X^2 + ' + colored('b', 'blue') + '*X + ' + colored('c', 'yellow') + \
-                      ' = 0\n\t\t'
+        colored_eq += colored('a', 'red') + '*X^2 + ' + colored('b', 'blue') + '*X + ' +\
+                      colored('c', 'yellow') + ' = 0\n\t\t'
         colored_eq += colored(f'{model.a}', 'red') + '*X^2 '
         if model.b < 0:
             colored_eq += '- ' + colored(f'{-1 * model.b}', 'blue') + '*X '

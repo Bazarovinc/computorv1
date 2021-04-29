@@ -59,10 +59,9 @@ def parse_free_form_equation(eq: str, model: EquationModel, side: int) -> str:
 
 def parse_other_degrees(eq: str, side: int, degree) -> Tuple[str, Optional[List[OtherDegrees]]]:
     other_degrees = []
-    for i in reversed(range(3, degree + 1)):
+    for i in range(3, degree + 1):
         coef, eq = parse_nums(parse_polynomial_part(eq, i), eq)
-        if int(coef) != 0:
-            other_degrees.append(OtherDegrees(coefficient=side * coef, degree=i))
+        other_degrees.append(OtherDegrees(coefficient=side * coef, degree=i))
     if len(other_degrees) == 0:
         return eq, None
     return eq, other_degrees
@@ -122,8 +121,7 @@ def parse(equation: str, model: EquationModel) -> bool:
     else:
         eq_1 = parse_equation(eq_1, model, 1).strip()
         eq_2 = parse_equation(eq_2, model, -1).strip()
-    if model.other_degrees is None:
-        model.set_degree()
+    model.set_degree()
     if not eq_1 and not eq_2:
         return True
     return False

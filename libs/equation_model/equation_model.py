@@ -23,9 +23,12 @@ class EquationModel(BaseModel):
     free_form: Optional[bool] = False
 
     def set_degree(self):
-        if int(self.a) and int(self.b) == 0:
-            self.degree = 0
-        elif int(self.a) == 0:
-            self.degree = 1
+        if self.other_degrees is None:
+            if int(self.a) and int(self.b) == 0:
+                self.degree = 0
+            elif int(self.a) == 0:
+                self.degree = 1
+            else:
+                self.degree = 2
         else:
-            self.degree = 2
+            self.degree = self.other_degrees[-1].degree

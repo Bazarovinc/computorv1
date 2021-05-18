@@ -34,7 +34,7 @@ Discriminant is strictly positive, the two solutions are:
 ### Flags
 * -s
 
-The program will show you solving equation stat by step:
+The program will show you solving equation step by step:
 ```
 >./computor.py -s "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
 Reduced form: 4.0 * X^0 + 4.0 * X^1 - 9.3 * X^2 = 0
